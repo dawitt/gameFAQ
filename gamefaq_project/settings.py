@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'users',
     'posts',
     'notification',
-    'api'
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +133,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'users.MyUser'
+
 LOGIN_URL = '/login/'
 
-AUTH_USER_MODEL = 'users.MyUser'
+LOGOUT_REDIRECT_URL = 'home'
