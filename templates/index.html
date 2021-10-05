@@ -1,5 +1,28 @@
-<form method='post'action=''>
-    {%  csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
+<h1>Game FAQ Clone</h1>
+<div>
+  <a href="/">Home</a>|| <a href="/login">login</a>||
+  <a href="/logout">logout</a>|| <a href="/signup">signup</a>
+</div>
+{% if request.user.is_autheticated %}
+<div>
+  <h2>Welcome <a href="">{request.user}</a></h2>
+</div>
+{% endif %}
+<div>
+  <h2>Ask a Question.</h2>
+  <form method="post" action="">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+<div>
+  <h1>Here's all the faqs YEAH!</h1>
+  <ul>
+    <li><a href="">PC</a></li>
+    <li><a href="">PS5</a></li>
+    <li><a href="">PS4</a></li>
+    <li><a href="">Switch</a></li>
+    <li><a href="">XBOX ONE</a></li>
+    <li><a href="">XBOX SERIES</a></li>
+  </ul>
+</div>

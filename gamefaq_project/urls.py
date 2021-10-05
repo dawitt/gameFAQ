@@ -17,13 +17,20 @@ from django.contrib import admin
 from django.urls import path
 # from users import views
 from authentication import views as authviews
-# from posts import views as postviews
+from posts import views as postviews
+from users import views as usersviews
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path("", views.index_view, name="home"),
+    path("", postviews.homepage_view, name="home"),
     path("logout/", authviews.logout_view, name="logout"),
     path("login/", authviews.login_view, name="login"),
     path("signup/", authviews.signup_view, name="signup"),
+    path("user/<int:id>/", usersviews.User_detail_view.as_view(), name="user_detail"),
+    path("comments/<int:id>/", postviews.Comment_detail_view.as_view(), name="comment_detail"),
+    path("questions/<int:id>/", postviews.Question_detail_view.as_view(), name="question_detail"),
+    path("faqs/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
+
+    
 ]
