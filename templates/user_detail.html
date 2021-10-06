@@ -1,0 +1,25 @@
+<!-- % extends "base.html" %} % block title %} % endblock title %} % block
+content %} -->
+<div>
+  <h2>This is your profile: {{user}}</h2>
+
+  <ul>
+    Your Comments:
+  </ul>
+  {% for comment in comments%}
+  <li>
+    <p><a href="/comment-detail/{{comment.id}}">{{comment.post_title}}</a></p>
+  </li>
+  {% endfor %}
+  <ul>
+    Your FAQs:
+  </ul>
+  {% for comment in faqs%}
+  <li>
+    <p><a href="/faq-detail/{{comment.id}}">{{comment.faq_title}}</a></p>
+    <img src="{{comment.post_img.url}}" />
+  </li>
+  {% endfor %}
+</div>
+
+<!-- % endblock %} -->

@@ -19,6 +19,9 @@ from django.urls import path
 from authentication import views as authviews
 from posts import views as postviews
 from users import views as usersviews
+from django.conf import settings
+import os
+from django.conf.urls.static import static 
 
 
 urlpatterns = [
@@ -28,9 +31,18 @@ urlpatterns = [
     path("login/", authviews.login_view, name="login"),
     path("signup/", authviews.signup_view, name="signup"),
     path("user/<int:id>/", usersviews.User_detail_view.as_view(), name="user_detail"),
-    path("comments/<int:id>/", postviews.Comment_detail_view.as_view(), name="comment_detail"),
-    path("questions/<int:id>/", postviews.Question_detail_view.as_view(), name="question_detail"),
-    path("faqs/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
+    path("comment-detail/<int:id>/", postviews.Comment_detail_view.as_view(), name="comment_detail"),
+    path("question-detail/<int:id>/", postviews.Question_detail_view.as_view(), name="question_detail"),
+    path("faq-detail/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
+    path("add-comment/", postviews.add_comment, name="add_comment"),
+    path("add-question/", postviews.add_question, name="add_question"),
+    path("add-faq/", postviews.add_faq, name="add_faq"),
+
 
     
 ]
+
+# urlpatterns + static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT) 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
