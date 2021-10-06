@@ -6,7 +6,7 @@ from PIL import Image
 class CommentPost(models.Model):
     post_title = models.CharField(max_length=200)
     post_body = models.CharField(max_length=250)
-    post_img = models.ImageField(upload_to='uploaded_images/')
+    post_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
 
@@ -16,6 +16,7 @@ class CommentPost(models.Model):
 class QuestionPost(models.Model):
     question_title = models.CharField(max_length=200)
     question_body = models.CharField(max_length=250)
+    question_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     question_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
     question = models.BooleanField()
@@ -25,9 +26,11 @@ class QuestionPost(models.Model):
 
 
 class FAQPost(models.Model):
-    faq = models.TextField(max_length=250)
+    faq_title = models.CharField(max_length=100)
+    faq_body = models.TextField(max_length=250)
+    faq_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     faq_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.faq
+        return self.faq_title
