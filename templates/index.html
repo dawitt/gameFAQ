@@ -1,23 +1,19 @@
-<h1>Game FAQ Clone</h1>
-<div>
-  <a href="/">Home</a>|| <a href="/login">login</a>||
-  <a href="/logout">logout</a>|| <a href="/signup">signup</a>
-</div>
-{% if request.user.is_autheticated %}
-<div>
-  <h2>Welcome <a href="">{request.user}</a></h2>
-</div>
-{% endif %}
-<div>
+{% extends "base.html" %}
+{% block title %}  {% endblock title %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+
+<div class="col-8">
   <h2>Ask a Question.</h2>
   <form method="post" action="">
     {% csrf_token %} {{ form.as_p }}
     <input type="submit" value="Submit" />
   </form>
-</div>
-<div>
+<hr />
   <h1>Here's all the faqs YEAH!</h1>
-  <ul>
+  <ul sytle="list-style-type: none">
     <li><a href="">PC</a></li>
     <li><a href="">PS5</a></li>
     <li><a href="">PS4</a></li>
@@ -26,3 +22,12 @@
     <li><a href="">XBOX SERIES</a></li>
   </ul>
 </div>
+
+<div class="col-4">
+<br />
+<h3> Some Title</h3>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</div>
+
+
+{% endblock%}
