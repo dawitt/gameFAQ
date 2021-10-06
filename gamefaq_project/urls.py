@@ -19,6 +19,9 @@ from django.urls import path
 from authentication import views as authviews
 from posts import views as postviews
 from users import views as usersviews
+from django.conf import settings
+import os
+from django.conf.urls.static import static 
 
 
 urlpatterns = [
@@ -31,6 +34,8 @@ urlpatterns = [
     path("comments/<int:id>/", postviews.Comment_detail_view.as_view(), name="comment_detail"),
     path("questions/<int:id>/", postviews.Question_detail_view.as_view(), name="question_detail"),
     path("faqs/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
-
+    path("add-comment/", postviews.add_comment, name="add_comment"),
     
 ]
+
+urlpatterns + static(settings.STATIC_URL, document_root=settings.MEDIA_ROOT) 

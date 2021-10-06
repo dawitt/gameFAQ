@@ -1,11 +1,11 @@
 from django import forms
-from posts.models import CommentPosts, QuestionPosts, FAQPosts
+from posts.models import CommentPost, QuestionPost, FAQPost
 from users.models import MyUser
 
 class AddCommentPost(forms.ModelForm):
     class Meta:
-        model = CommentPosts
-        fields = ('post_title', 'post_body', 'creator', 'date_created')
+        model = CommentPost
+        fields = ('post_title', 'post_body', 'post_img' , 'creator', 'date_created')
 
 class AddQuestionPost(forms.Form):
     question_title = forms.CharField(max_length=200)
