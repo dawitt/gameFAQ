@@ -1,33 +1,39 @@
-{% extends "base.html" %}
-{% block title %}  {% endblock title %}
-{% block content %}
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
 
 <div class="container">
   <div class="row">
+    <div class="col-8">
+      <h2>Ask a Question.</h2>
+      <form method="post" action="">
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Submit" />
+      </form>
+      <hr />
+      <h1>Here's all the faqs YEAH!</h1>
+      <ul sytle="list-style-type: none">
+        <li><a href="/console-detail/{{4}}">PC</a></li>
+        <li><a href="/console-detail/{{187}}">PS5</a></li>
+        <li><a href="/console-detail/{{18}}">PS4</a></li>
+        <li><a href="/console-detail/{{7}}">Switch</a></li>
+        <li><a href="/console-detail/{{1}}">XBOX ONE</a></li>
+        <li><a href="/console-detail/{{186}}">XBOX SERIES</a></li>
+      </ul>
+    </div>
 
-<div class="col-8">
-  <h2>Ask a Question.</h2>
-  <form method="post" action="">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Submit" />
-  </form>
-<hr />
-  <h1>Here's all the faqs YEAH!</h1>
-  <ul sytle="list-style-type: none">
-    <li><a href="">PC</a></li>
-    <li><a href="">PS5</a></li>
-    <li><a href="">PS4</a></li>
-    <li><a href="">Switch</a></li>
-    <li><a href="">XBOX ONE</a></li>
-    <li><a href="">XBOX SERIES</a></li>
-  </ul>
+    <div class="col-4">
+      <br />
+      <h3>Some Title</h3>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book. It has survived not only five centuries, but
+      also the leap into electronic typesetting, remaining essentially
+      unchanged. It was popularised in the 1960s with the release of Letraset
+      sheets containing Lorem Ipsum passages, and more recently with desktop
+      publishing software like Aldus PageMaker including versions of Lorem
+      Ipsum.
+    </div>
+    {% endblock %}
+  </div>
 </div>
-
-<div class="col-4">
-<br />
-<h3> Some Title</h3>
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</div>
-
-
-{% endblock%}

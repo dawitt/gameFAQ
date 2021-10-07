@@ -19,6 +19,7 @@ from django.urls import path
 from authentication import views as authviews
 from posts import views as postviews
 from users import views as usersviews
+from api import views as apiviews
 from django.conf import settings
 import os
 from django.conf.urls.static import static 
@@ -37,6 +38,8 @@ urlpatterns = [
     path("add-comment/", postviews.add_comment, name="add_comment"),
     path("add-question/", postviews.add_question, name="add_question"),
     path("add-faq/", postviews.add_faq, name="add_faq"),
+    path("console-detail/<int:id>/", apiviews.console_detail_view, name="console_detail"),
+    path("console-games/<str:console>/", apiviews.console_games_view, name="console_games"),
 
 
     
