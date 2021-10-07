@@ -79,3 +79,5 @@ def add_faq(request):
             return HttpResponseRedirect(reverse('home'))
     form = AddFAQPost()
     return render(request, 'generic_form.html', {'form':form})
+
+
