@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields import NullBooleanField
 from users.models import MyUser
 from posts.models import CommentPost, QuestionPost, FAQPost
 # Create your models here.

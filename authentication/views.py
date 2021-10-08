@@ -18,7 +18,7 @@ def signup_view(request):
                 username=data.get("username"), password=data.get("password")
             )
             login(request, user)
-            return redirect(reverse("homepage"))
+            return redirect(reverse("home"))
     return render(request, template_name, {"form": form, "header": "Signup"})
 
 
