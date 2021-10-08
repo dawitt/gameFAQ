@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
+
+<div>
+  <h2>Ask a Question:</h2>
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+<h2>Questions:</h2>
+
+{% for question in questions %}
+<div>
+  <!-- <img width="250px" src="{{question.game_img}}" /> -->
+  <h3>
+    <a href="/question-detail/{{question.id}}">{{question.question_title}}</a>
+  </h3>
+  <p>game: {{question.for_game}}</p>
+</div>
+
+{% endfor %} {% endblock %}

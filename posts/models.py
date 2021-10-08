@@ -9,6 +9,7 @@ class CommentPost(models.Model):
     post_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
+    for_game = models.CharField(max_length=100)
 
     def __str__(self):
         return self.post_title
@@ -19,10 +20,21 @@ class QuestionPost(models.Model):
     question_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     question_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
-    question = models.BooleanField()
+    for_game = models.CharField(max_length=100)
+    #question = models.BooleanField()
 
     def __str__(self):
         return self.question_title
+
+class AnswerPost(models.Model):
+    answer_body = models.TextField(max_length=200)
+    answer_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
+    question = models.ForeignKey(QuestionPost, on_delete=models.CASCADE)
+    answer_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.answer_body
 
 
 class FAQPost(models.Model):
@@ -31,6 +43,7 @@ class FAQPost(models.Model):
     faq_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     faq_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
+    for_game = models.CharField(max_length=100)
 
     def __str__(self):
         return self.faq_title

@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
+
+<div>
+  <h2>{{question_post.question_title}}</h2>
+  <p>{{question_post.question_body}}</p>
+  {% if question_post.question_img %}
+
+  <img width="25%" height="auto" src="{{question_post.question_img.url}}" />
+  {% endif %}
+  <p>
+    creator: {{question_post.question_creator}} at
+    {{question_post.date_created}}
+  </p>
+  <p>Game: {{question_post.for_game}}</p>
+  <img />
+
+  {% if answers %}
+  <h3>Answers for this question:</h3>
+  {% for answer in answers %}
+
+  <p>{{answer.answer_body}}</p>
+  {% if answer.answer_img %}
+  <img width="25%" src="{{answer.answer_img.url}}" />
+  {% endif %}
+  <p>Answered by :{{answer.answer_creator}}</p>
+  <p>-----------------------------------</p>
+  {% endfor %}
+</div>
+
+{% else %}
+<h3>Be the first one to answer this question!</h3>
+{% endif %}
+
+<div>
+  <h2>Answer this question:</h2>
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+{% endblock %}

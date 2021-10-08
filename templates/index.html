@@ -1,16 +1,10 @@
-{% extends "base.html" %} {% block title %} <br />
+{% extends "base.html" %} {% block title %} Home 
 {% endblock title %} {% block content %}
 
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h2>Ask a Question.</h2>
-      <form method="post" action="">
-        {% csrf_token %} {{ form.as_p }}
-        <input type="submit" value="Submit" />
-      </form>
-      <hr />
-      <h1>Here's all the faqs YEAH!</h1>
+      <h1>Browse Consoles</h1>
       <ul sytle="list-style-type: none">
         <li><a href="/console-detail/{{4}}">PC</a></li>
         <li><a href="/console-detail/{{187}}">PS5</a></li>
@@ -36,4 +30,8 @@
     </div>
     {% endblock %}
   </div>
+</div>
+<div>
+  <a href="">Game</a>||<a href="questions/">Q&A</a>|| <a href="">Media</a>||
+  <a href="">Board</a>
 </div>

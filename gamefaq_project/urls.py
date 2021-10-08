@@ -33,13 +33,18 @@ urlpatterns = [
     path("signup/", authviews.signup_view, name="signup"),
     path("user/<int:id>/", usersviews.User_detail_view.as_view(), name="user_detail"),
     path("comment-detail/<int:id>/", postviews.Comment_detail_view.as_view(), name="comment_detail"),
-    path("question-detail/<int:id>/", postviews.Question_detail_view.as_view(), name="question_detail"),
-    path("faq-detail/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
+    path("question-detail/<int:id>/", postviews.question_detail_view, name="question_detail"),
+    path("walkthrough/<int:id>/", postviews.Faq_detail_view.as_view(), name="faq_detail"),
     path("add-comment/", postviews.add_comment, name="add_comment"),
     path("add-question/", postviews.add_question, name="add_question"),
     path("add-faq/", postviews.add_faq, name="add_faq"),
     path("console-detail/<int:id>/", apiviews.console_detail_view, name="console_detail"),
     path("console-games/<str:console>/", apiviews.console_games_view, name="console_games"),
+    path("game-detail/<int:id>/", apiviews.game_detail, name="game_detail"),
+    path("questions/", postviews.all_questions, name="all_questions"),
+    path("ask-game-question/<int:id>/", postviews.ask_game_question, name="ask-game-question"),
+
+
 
 
     
