@@ -1,9 +1,5 @@
-<h1>Game FAQ Clone</h1>
-<div>
-  <a href="/">Home</a>|| <a href="/login">login</a>||
-  <a href="/logout">logout</a>|| <a href="/signup">signup</a>
-</div>
-
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
 <div>
   <!-- <img src="console_img}}" /> -->
   <h1>{{console_name}}</h1>
@@ -17,3 +13,4 @@
     <a href="">Board</a>
   </div>
 </div>
+{% endblock %}
