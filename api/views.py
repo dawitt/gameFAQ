@@ -85,8 +85,10 @@ def game_detail(request, id):
     game_slug = data['slug']
     game_release = data['released']
     game_img = data['background_image']
-    game_desc = data['description']
-    esrb_rating = data['esrb_rating']['name']
+    game_desc = data['description_raw'].replace('###', ' ')
+    esrb_rating = ''
+    if data['esrb_rating']:
+        esrb_rating = data['esrb_rating']['name']
     platforms = []
     for platform in data['platforms']:
         print(platform['platform']['name'])
@@ -95,7 +97,7 @@ def game_detail(request, id):
     
     data = json.dumps(data, indent=2)
 
-    
+  
     faqs = FAQPost.objects.filter(for_game=game_name)
     questions = QuestionPost.objects.filter(for_game=game_name)
     
