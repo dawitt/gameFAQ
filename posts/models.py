@@ -7,7 +7,7 @@ from PIL import Image
 class QuestionPost(models.Model):
     question_title = models.CharField(max_length=200)
     question_body = models.CharField(max_length=250)
-    question_img = models.ImageField(upload_to='uploaded_images/', null=True, blank=True)
+    question_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     question_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
     for_game = models.CharField(max_length=100)
@@ -17,7 +17,7 @@ class QuestionPost(models.Model):
 
 class AnswerPost(models.Model):
     answer_body = models.TextField()
-    answer_img = models.ImageField(upload_to='uploaded_images/', null=True, blank=True)
+    answer_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     question = models.ForeignKey(QuestionPost, on_delete=models.CASCADE)
     answer_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
@@ -30,7 +30,7 @@ class AnswerPost(models.Model):
 class WalkthroughPost(models.Model):
     walkthrough_title = models.CharField(max_length=100)
     walkthrough_body = models.TextField()
-    walkthrough_img = models.ImageField(upload_to='uploaded_images/', null=True, blank=True)
+    walkthrough_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     walkthrough_creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
     for_game = models.CharField(max_length=100)
@@ -42,7 +42,7 @@ class WalkthroughPost(models.Model):
 class WalkthroughComment(models.Model):
     post_body = models.TextField()
     walkthrough_post = models.ForeignKey(WalkthroughPost, on_delete=models.CASCADE)
-    post_img = models.ImageField(upload_to='uploaded_images/', null=True, blank=True)
+    post_img = models.ImageField(upload_to='uploaded_imgages/', null=True, blank=True)
     creator = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     date_created = models.DateTimeField(default=timezone.now)
     for_game = models.CharField(max_length=100)
