@@ -10,5 +10,8 @@ class UserDetailView(View):
         questions = QuestionPost.objects.filter(question_creator=user)
         walkthroughs = WalkthroughPost.objects.filter(walkthrough_creator=user)
         return render(request, 'user_detail.html', {'user': user, 'questions':questions, 'walkthroughs': walkthroughs})
-        
+
+def all_users(request):
+    users = MyUser.objects.all()
+    return render(request, 'all_users.html', {'users': users})
 
