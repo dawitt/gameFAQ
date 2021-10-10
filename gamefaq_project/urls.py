@@ -33,6 +33,7 @@ urlpatterns = [
     path("login/", authviews.login_view, name="login"),
     path("signup/", authviews.signup_view, name="signup"),
     path("user/<int:id>/", usersviews.UserDetailView.as_view(), name="user_detail"),
+    path("users/", usersviews.all_users, name="all_users"),
     path("question-detail/<int:id>/", postviews.question_detail_view, name="question-detail"),
     path("walkthrough/<int:id>/", postviews.walkthrough_detail_view, name="walkthrough"),
     path("add-walkthrough/<int:id>", postviews.add_walkthrough, name="add_walkthrough"),
@@ -44,7 +45,7 @@ urlpatterns = [
     path("dislike_answer/<int:id>/", postviews.dislike_answer, name="dislike_answer"),
     path("like_walkthrough/<int:id>/", postviews.like_walkthrough, name="like_walkthrough"),
     path("dislike_walkthrough/<int:id>/", postviews.dislike_walkthrough, name="dislike_walkthrough"),
-    path("notifications/", notificationviews.NotificationView.as_view(), name="notification")
+    path("notifications/", notificationviews.NotificationView.as_view(), name="notifications")
 ]
 
 

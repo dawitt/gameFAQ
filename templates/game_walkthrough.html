@@ -7,7 +7,7 @@
   {% if walkthrough_post.walkthrough_img %}
   <img width="25%" height="auto" src="{{walkthrough_post.walkthrough_img.url}}" />
   {% endif %}
-  <p>Created by {{walkthrough_post.walkthrough_creator}} at {{walkthrough_post.date_created}}</p>
+  <p>Created by <a href='/user/{{walkthrough_post.walkthrough_creator.id}}'>{{walkthrough_post.walkthrough_creator}}</a> on {{walkthrough_post.date_created}}</p>
   <p>Game: {{walkthrough_post.for_game}}</p>
   <p>Likes: {{walkthrough_post.likes}}</p>
   <p>Dislikes: {{walkthrough_post.dislikes}}</p>
@@ -21,7 +21,7 @@
   {% if comment.post_img %}
   <img width="25%" src="{{comment.post_img.url}}" />
   {% endif %}
-  <p>by: {{comment.creator}}</p>
+  <p>by <a href='/user/{{comment.creator.id}}'>{{comment.creator}}</a> on {{comment.date_created}}</p> 
   <p>-----------------------------------</p>
   {% endfor %}
 </div>

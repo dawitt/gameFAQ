@@ -9,21 +9,19 @@
   <img width="25%" height="auto" src="{{question_post.question_img.url}}" />
   {% endif %}
   <p>
-    Asked by {{question_post.question_creator}} at
+    Asked by <a href='/user/{{question_post.question_creator.id}}'>{{question_post.question_creator}}</a> at
     {{question_post.date_created}}
   </p>
   <p>Game: {{question_post.for_game}}</p>
-  <img />
 
   {% if answers %}
   <h3>Answers for this question:</h3>
   {% for answer in answers %}
-
   <p>{{answer.answer_body}}</p>
   {% if answer.answer_img %}
   <img width="25%" src="{{answer.answer_img.url}}" />
   {% endif %}
-  <p>Answered by: {{answer.answer_creator}}</p>
+  <p>Answered by <a href='/user/{{answer.answer_creator.id}}'>{{answer.answer_creator}}</a> on {{answer.date_created}}</p>
   <p>Likes: {{answer.likes}}</p>
   <p>Dislikes: {{answer.dislikes}}</p>
   <button><a href='/like_answer/{{answer.id}}'>👍 Like</a></button>
