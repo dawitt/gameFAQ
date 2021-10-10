@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
 from posts.forms import AddAnswerForm
-from posts.models import FAQPost, QuestionPost, AnswerPost
+from posts.models import WalkthroughPost, QuestionPost, AnswerPost
 import requests
 import json
 # Create your views here.
@@ -19,7 +19,7 @@ def console_detail_view(request, id):
     console_name = data['name']
     console_slug = data['slug']
     console_img = data['image_background']
-    console_desc = data['description']
+    console_desc = data['description'].replace('<p>', '').replace('</p>', '').replace('<br />', '').replace('&#39;', "'").replace('&quot;', '"')
     games_count = data['games_count']
     data = json.dumps(data, indent=2)
     return render(request, 'console.html', {'data': data, 'console_name':console_name, 'console_img': console_img, 'console_desc': console_desc, 'games_count':games_count, 'console_slug':console_slug ,'id':id})
@@ -98,7 +98,7 @@ def game_detail(request, id):
     data = json.dumps(data, indent=2)
 
   
-    faqs = FAQPost.objects.filter(for_game=game_name)
+    walkthroughs = WalkthroughPost.objects.filter(for_game=game_name)
     questions = QuestionPost.objects.filter(for_game=game_name)
     
-    return render(request, 'game_detail.html', {'id': id, 'game_name':game_name, 'game_slug':game_slug, 'game_img':game_img, 'game_desc': game_desc, 'game_release': game_release, 'esrb_rating':esrb_rating, 'platforms':platforms, 'questions': questions, 'faqs':faqs})
+    return render(request, 'game_detail.html', {'id': id, 'game_name': game_name, 'game_slug': game_slug, 'game_img': game_img, 'game_desc': game_desc, 'game_release': game_release, 'esrb_rating': esrb_rating, 'platforms': platforms, 'questions': questions, 'walkthroughs': walkthroughs})

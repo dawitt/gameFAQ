@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
+
+<div>
+  <h2>{{walkthrough_post.walkthrough_title}}</h2>
+  <p>{{walkthrough_post.walkthrough_body}}</p>
+  {% if walkthrough_post.walkthrough_img %}
+  <img width="25%" height="auto" src="{{walkthrough_post.walkthrough_img.url}}" />
+  {% endif %}
+  <p>Created by {{walkthrough_post.walkthrough_creator}} at {{walkthrough_post.date_created}}</p>
+  <p>Game: {{walkthrough_post.for_game}}</p>
+  <p>Likes: {{walkthrough_post.likes}}</p>
+  <p>Dislikes: {{walkthrough_post.dislikes}}</p>
+  <button><a href='/like_walkthrough/{{walkthrough_post.id}}'>👍 Like</a></button>
+  <button><a href='/dislike_walkthrough/{{walkthrough_post.id}}'>👎 Dislike</a></button>
+  {% if walkthrough_comments %}
+  <h3>Walkthrough Comments:</h3>
+  {% for comment in walkthrough_comments %}
+
+  <p>{{comment.post_body}}</p>
+  {% if comment.post_img %}
+  <img width="25%" src="{{comment.post_img.url}}" />
+  {% endif %}
+  <p>by: {{comment.creator}}</p>
+  <p>-----------------------------------</p>
+  {% endfor %}
+</div>
+{% else %}
+<h3>Be the first one to comment on this walkthrough!</h3>
+
+{% endif %}
+<div>
+  <h2>Comment on this walkthrough:</h2>
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+{% endblock %}

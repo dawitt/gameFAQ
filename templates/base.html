@@ -156,10 +156,9 @@
                     />
                   </svg>
                 </a>
-                <a class="nav-link" href="/questions">Questions</a>
                 <a class="nav-link" href="/signup/">Signup</a>
                 <a class="nav-link" href="#">
-                  {% if user.is_authenticated %} Welcome,{{user.username}}</a
+                  {% if user.is_authenticated %} Welcome, {{user.username}}</a
                 >
                 <a class="nav-link" href="/logout/">Logout</a>
                 {% else %}

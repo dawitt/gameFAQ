@@ -9,7 +9,7 @@
   <img width="25%" height="auto" src="{{question_post.question_img.url}}" />
   {% endif %}
   <p>
-    creator: {{question_post.question_creator}} at
+    Asked by {{question_post.question_creator}} at
     {{question_post.date_created}}
   </p>
   <p>Game: {{question_post.for_game}}</p>
@@ -23,7 +23,11 @@
   {% if answer.answer_img %}
   <img width="25%" src="{{answer.answer_img.url}}" />
   {% endif %}
-  <p>Answered by :{{answer.answer_creator}}</p>
+  <p>Answered by: {{answer.answer_creator}}</p>
+  <p>Likes: {{answer.likes}}</p>
+  <p>Dislikes: {{answer.dislikes}}</p>
+  <button><a href='/like_answer/{{answer.id}}'>👍 Like</a></button>
+  <button><a href='/dislike_answer/{{answer.id}}'>👎 Dislike</a></button>
   <p>-----------------------------------</p>
   {% endfor %}
 </div>

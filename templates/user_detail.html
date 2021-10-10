@@ -1,25 +1,25 @@
-<!-- % extends "base.html" %} % block title %} % endblock title %} % block
-content %} -->
+{% extends "base.html" %} {% block title %} {% endblock title %} {% block
+content %}
 <div>
   <h2>This is your profile: {{user}}</h2>
 
   <ul>
-    Your Comments:
+    {{user}}'s Questions:
   </ul>
-  {% for comment in comments%}
+  {% for question in questions%}
   <li>
-    <p><a href="/comment-detail/{{comment.id}}">{{comment.post_title}}</a></p>
+    <p><a href="/question-detail/{{question_post.id}}">{{question_post.question_title}}</a></p>
   </li>
   {% endfor %}
   <ul>
-    Your FAQs:
+    {{user}}'s Walkthroughs:
   </ul>
-  {% for comment in faqs%}
+  {% for walkthrough in walkthroughs %}
   <li>
-    <p><a href="/faq-detail/{{comment.id}}">{{comment.faq_title}}</a></p>
-    <img src="{{comment.post_img.url}}" />
+    <p><a href="/walkthrough/{{walkthrough.id}}">{{walkthrough.walkthrough_title}}</a></p>
+    <img src="{{walkthrough.walkthrough_img.url}}" />
   </li>
   {% endfor %}
 </div>
 
-<!-- % endblock %} -->
+{% endblock %}
