@@ -12,7 +12,7 @@ def console_detail_view(request, id):
         'User-Agent': 'Q4_Capstone',
     }
     payload={
-        'key':'81ea352e06b54bb4b1218cb8d2b0e4eb',        
+        'key':'81ea352e06b54bb4b1218cb8d2b0e4eb',     
     }
     response = requests.get(url, headers=headers, params=payload)
     data = json.loads(response.text)
@@ -25,7 +25,7 @@ def console_detail_view(request, id):
     return render(request, 'console.html', {'data': data, 'console_name':console_name, 'console_img': console_img, 'console_desc': console_desc, 'games_count':games_count, 'console_slug':console_slug ,'id':id})
 
 
-def console_games_view(request, console):
+def console_games_view(request, console, page):
     if console == 'pc':
         id = 4
         console_name = 'PC'
@@ -50,7 +50,8 @@ def console_games_view(request, console):
     }
     payload={
         'key':'81ea352e06b54bb4b1218cb8d2b0e4eb',
-        'platforms': id
+        'platforms': id,
+        'page': page
     }
     response = requests.get(url, headers=headers, params=payload)
     data = json.loads(response.text)
@@ -64,10 +65,11 @@ def console_games_view(request, console):
             'game_img': game['background_image']
         }
         game_list.append(game_obj)
-    # game_platforms = 
+    
     data = json.dumps(data, indent=2)
-    print(url)
-    return render(request, 'console_all_games.html', {'data': data, 'id':id, 'game_list':game_list, 'console':console_name})
+    next_page = int(page) + 1
+    prev_page = int(page) - 1
+    return render(request, 'console_all_games.html', {'next_page': next_page, 'prev_page': prev_page, 'data': data, 'id':id, 'game_list':game_list, 'console':console_name, 'console_slug': console})
     #'game_name':game_name, 'game_slug':game_slug, 'game_img':game_img
 
 def game_detail(request, id):
