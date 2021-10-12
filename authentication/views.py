@@ -7,7 +7,7 @@ from users.models import MyUser
 
 # Create your views here.
 def signup_view(request):
-    template_name = "generic_form.html"
+    template_name = "signup.html"
     form = SignupForm()
 
     if request.method == "POST":
@@ -23,9 +23,8 @@ def signup_view(request):
 
 
 def login_view(request):
-    template_name = "generic_form.html"
+    template_name = "login.html"
     form = LoginForm()
-
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():

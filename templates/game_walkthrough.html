@@ -29,6 +29,7 @@
 <h3>Be the first one to comment on this walkthrough!</h3>
 
 {% endif %}
+{% if request.user.is_authenticated %}
 <div>
   <h2>Comment on this walkthrough:</h2>
   <form method="post" action="" enctype="multipart/form-data">
@@ -36,5 +37,8 @@
     <input type="submit" value="Submit" />
   </form>
 </div>
+{% else %}
+<p>Signup to be able to post a comment</p>
+{% endif %}
 
 {% endblock %}

@@ -6,7 +6,13 @@
     <div class="col-8">
       <h1>Browse Consoles</h1>
       <ul sytle="list-style-type: none">
-        <li><a href="/console-detail/{{4}}">PC</a></li>
+        {% load static %}
+        <div>
+          <a href="/console-detail/{{4}}">
+          
+            <img src='{% static "PS4-Console.png" %}'></img></a>
+            <p>PC</p>
+          </div>
         <li><a href="/console-detail/{{187}}">PS5</a></li>
         <li><a href="/console-detail/{{18}}">PS4</a></li>
         <li><a href="/console-detail/{{7}}">Switch</a></li>

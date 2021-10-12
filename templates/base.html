@@ -141,6 +141,12 @@
                     </li>
                   </ul>
                 </li>
+                <a class="nav-link" href="/users/">Users</a>
+                <a class="nav-link" href="/user/{{request.user.id}}">
+                  {% if user.is_authenticated %} Welcome,
+                  {{request.user.username}}
+                </a>
+                
                 <a class="nav-link" href="/notifications/"
                   >Notification
                   <svg
@@ -156,14 +162,9 @@
                     />
                   </svg>
                 </a>
-                <a class="nav-link" href="/users/">Users</a>
-                <a class="nav-link" href="/signup/">Signup</a>
-                <a class="nav-link" href="/user/{{request.user.id}}">
-                  {% if user.is_authenticated %} Welcome,
-                  {{request.user.username}}
-                </a>
                 <a class="nav-link" href="/logout/">Logout</a>
                 {% else %}
+                <a class="nav-link" href="/signup/">Signup</a>
                 <a class="nav-link" href="/login/">Login</a>
                 {% endif %}
               </div>
