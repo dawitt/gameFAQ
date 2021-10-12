@@ -7,7 +7,7 @@ from django.views.generic import View
 # Create your views here.
 class NotificationView(View):
     def get(self, request):
-        notifications = Notification.objects.all().order_by('-id')
+        notifications = Notification.objects.filter(mentioned=request.user).order_by('-id')
         for notification in notifications:
             notification.delete()
         return render(request, 'notification.html', {'notifications': notifications})

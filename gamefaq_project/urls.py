@@ -45,7 +45,8 @@ urlpatterns = [
     path("dislike_answer/<int:id>/", postviews.dislike_answer, name="dislike_answer"),
     path("like_walkthrough/<int:id>/", postviews.like_walkthrough, name="like_walkthrough"),
     path("dislike_walkthrough/<int:id>/", postviews.dislike_walkthrough, name="dislike_walkthrough"),
-    path("notifications/", notificationviews.NotificationView.as_view(), name="notifications")
+    path("notifications/", notificationviews.NotificationView.as_view(), name="notifications"),
+    path('searchbar/', apiviews.searchbar, name='searchbar')
 ]
 
 

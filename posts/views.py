@@ -1,5 +1,6 @@
 from django import forms
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
+import notification
 from posts.forms import AddWalkthroughComment, AddQuestionPost, AddWalkthroughPost, AddAnswerForm
 from users.models import MyUser
 from posts.models import WalkthroughComment, QuestionPost, WalkthroughPost, AnswerPost
@@ -14,7 +15,6 @@ class HomepageView(View):
         user = request.user
         return render(request, 'index.html', {'user':user})
 
-
 def question_detail_view(request, id):
     question_post = QuestionPost.objects.get(id=id)
     if request.method == 'POST':
@@ -27,6 +27,12 @@ def question_detail_view(request, id):
             answer_creator = request.user,
             question = question_post
         )
+            notification = Notification.objects.create(
+                mentioned = question_post.question_creator,
+                question_post = question_post,
+                answer_post = new_answer,
+                
+            )
         #return HttpResponseRedirect(reverse('question_detail'))
     answers = AnswerPost.objects.filter(question=question_post)
     form = AddAnswerForm()
@@ -45,6 +51,12 @@ def walkthrough_detail_view(request, id):
                 walkthrough_post = walkthrough_post,
                 creator = request.user, 
             )
+            notification = Notification.objects.create(
+                mentioned = walkthrough_post.walkthrough_creator,
+                walkthrough_post = walkthrough_post,
+                comment_post = walkthrough_comment,
+                
+            )
     form = AddWalkthroughComment()
     walkthrough_comments = WalkthroughComment.objects.filter(walkthrough_post=walkthrough_post)
     return render(request, 'game_walkthrough.html', {'form': form, 'walkthrough_post':walkthrough_post, 'walkthrough_comments': walkthrough_comments})
@@ -53,27 +65,29 @@ def walkthrough_detail_view(request, id):
 
 def like_answer(request, id):
     post = AnswerPost.objects.get(id=id)
+    question = post.question.id
     post.likes += 1
     post.save()
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('question-detail', args=(question,)))
 
 def dislike_answer(request, id):
     post = AnswerPost.objects.get(id=id)
+    question = post.question.id
     post.dislikes += 1
     post.save()
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('question-detail', args=(question,)))
 
 def like_walkthrough(request, id):
     post = WalkthroughPost.objects.get(id=id)
     post.likes += 1
     post.save()
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('walkthrough', args=(id,)))
 
 def dislike_walkthrough(request, id):
     post = WalkthroughPost.objects.get(id=id)
     post.dislikes += 1
     post.save()
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('walkthrough', args=(id,)))
 
 # def add_walkthrough(request, id):
 #     walkthrough = WalkthroughPost.objects.get(id=id)
@@ -177,20 +191,3 @@ def add_walkthrough(request, id):
     return render(request, 'generic_form.html', {'form':form})
 
 
-# def all_questions(request):
-#     questions = QuestionPost.objects.all()
-#     if request.method == 'POST':
-#         form = AddQuestionPost(request.POST, request.FILES)
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             question = QuestionPost.objects.create(
-#                 question_title = data['question_title'],
-#                 question_body = data['question_body'],
-#                 question_img = data['question_img'],
-#                 question_creator = request.user,
-#                 for_game = data['for_game']
-#             )
-
-#             return HttpResponseRedirect(reverse('all_questions'))
-#     form = AddQuestionPost()
-#     return render(request, 'all_questions.html', {'questions': questions, 'form': form})
