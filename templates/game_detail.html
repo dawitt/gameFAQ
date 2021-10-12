@@ -12,11 +12,14 @@
   {% endif %}
   <p>Platforms: {{platforms}}</p>
   <!-- <p>{{data}}</p> -->
-
+{% if request.user.is_authenticated %}
   <div><a href="/add-walkthrough/{{id}}">Create your Walkthrough</a></div>
   <div>
     <a href="/ask-game-question/{{id}}">Ask a question about this game</a>
   </div>
+  {% else %}
+  <p> Signup to create your own walkthrough or ask a question about this game!</p>
+  {% endif %}
   {% if walkthroughs %}
   <div>
     <h2>Walkthroughs:</h2>
