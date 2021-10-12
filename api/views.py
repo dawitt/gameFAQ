@@ -104,3 +104,34 @@ def game_detail(request, id):
     questions = QuestionPost.objects.filter(for_game=game_name)
     
     return render(request, 'game_detail.html', {'id': id, 'game_name': game_name, 'game_slug': game_slug, 'game_img': game_img, 'game_desc': game_desc, 'game_release': game_release, 'esrb_rating': esrb_rating, 'platforms': platforms, 'questions': questions, 'walkthroughs': walkthroughs})
+
+def searchbar(request):  # , page
+    search = request.GET.get('search')
+    print(search)
+    url = 'https://api.rawg.io/api/games'
+    headers={
+        'User-Agent': 'Q4_Capstone',
+    }
+    payload={
+        'key':'81ea352e06b54bb4b1218cb8d2b0e4eb',
+        'search': search,
+        # 'page': page  
+    }
+    response = requests.get(url, headers=headers, params=payload)
+    data = json.loads(response.text)
+    count = data['count']
+    game_list = []
+    for game in data['results']:
+        print(game['id'])
+        game_obj = {
+            'game_id': game['id'],
+            'game_name': game['name'],
+            'game_slug': game['slug'],
+            'game_img': game['background_image']
+        }
+        game_list.append(game_obj)
+    #   data = json.dumps(data['results'], indent=4)
+    print(data['next'])
+    # next_page = int(page) + 1
+    # prev_page = int(page) - 1
+    return render(request, 'search.html', {'count':count, 'game_list': game_list, 'data': data, 'search':search}) # 'prev_page': prev_page,'next_page':next_page,

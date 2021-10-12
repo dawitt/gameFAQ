@@ -12,4 +12,4 @@ class Notification(models.Model):
     seen = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.post
+        return self.mentioned.username

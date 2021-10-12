@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% block title %} <br />
+{% endblock title %} {% block content %}
+
+<h2>All Notifications:</h2>
+
+{% for notification in notifications %} 
+<!-- {% if notification.mentioned == request.user %} -->
+{% if notification.answer_post %}
+<div>
+  @{{notification.answer_post.answer_creator}} has answered your question:
+  <a href="/question-detail/{{notification.question_post.id}}/"
+    >{{notification.question_post}}</a
+  >
+</div>
+{% elif notification.comment_post %}
+<div>
+    @{{notification.comment_post.creator}} has commented on your walkthrough:
+    <a href="/walkthrough/{{notification.walkthrough_post.id}}/"
+      >{{notification.walkthrough_post}}</a
+    >
+  </div>
+{% endif %}
+<!-- {% endif %} -->
+ {% endfor %} {% endblock %}
