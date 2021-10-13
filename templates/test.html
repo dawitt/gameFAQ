@@ -1,0 +1,8 @@
+
+{% for game in game_list %}
+<div>
+  {% comment %} <img width="250px" src="{{game.game_img}}" /> {% endcomment %}
+  <h3><a href="/game-detail/{{game.game_id}}">{{game.game_name}}</a></h3>
+</div>
+
+{% endfor %}
