@@ -1,5 +1,5 @@
 from django import forms
-from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
+from django.shortcuts import render, HttpResponseRedirect, reverse
 import notification
 from posts.forms import AddWalkthroughComment, AddQuestionPost, AddWalkthroughPost, AddAnswerForm
 from users.models import MyUser
@@ -8,7 +8,6 @@ from notification.models import Notification
 from django.views.generic import View 
 import requests
 import json
-from django.shortcuts import render_to_response
 from django.template import RequestContext
 # Create your views here.
 
@@ -197,7 +196,7 @@ def add_walkthrough(request, id):
 # https://stackoverflow.com/questions/17662928/django-creating-a-custom-500-404-error-page
 
 def handler404(request, *args, **argv):
-    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    response = render('404.html', {}, context_instance=RequestContext(request))
     response.status_code = 404
     return response
 
