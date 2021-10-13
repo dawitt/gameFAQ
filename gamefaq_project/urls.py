@@ -23,7 +23,10 @@ from api import views as apiviews
 from notification import views as notificationviews
 from django.conf import settings
 import os
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
+from django.conf.urls import (
+handler400, handler403, handler404, handler500
+)
 
 
 urlpatterns = [
@@ -54,5 +57,10 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 
 
-handler404 = 'post.views.handler404'
-handler500 = 'post.views.handler500'
+# handler404 = 'posts.views.handler404'
+# handler500 = 'posts.views.handler500'
+
+handler404 = 'posts.views.custom_page_not_found_view'
+handler500 = 'posts.views.custom_error_view'
+handler403 = 'posts.views.custom_permission_denied_view'
+handler400 = 'posts.views.custom_bad_request_view'
