@@ -11,11 +11,12 @@ def signup_view(request):
     form = SignupForm()
 
     if request.method == "POST":
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             user = MyUser.objects.create_user(
-                username=data.get("username"), password=data.get("password")
+                username=data.get("username"), password=data.get("password"),
+                profile_img = data.get('profile_img')
             )
             login(request, user)
             return redirect(reverse("home"))
