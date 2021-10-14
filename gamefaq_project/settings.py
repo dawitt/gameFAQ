@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.environ['SECRET_KEY']
 SECRET_KEY = 'django-insecure-)h@@&u@1k(7fd6efr#2bq(t@7o&&*!hppr$7g$m_ukqcoere37'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -144,6 +145,6 @@ LOGIN_URL = '/login/'
 
 LOGOUT_REDIRECT_URL = 'home'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR/ 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static') 

@@ -29,6 +29,7 @@ handler400, handler403, handler404, handler500
 )
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", postviews.HomepageView.as_view(), name="home"),
@@ -49,7 +50,9 @@ urlpatterns = [
     path("like_walkthrough/<int:id>/", postviews.like_walkthrough, name="like_walkthrough"),
     path("dislike_walkthrough/<int:id>/", postviews.dislike_walkthrough, name="dislike_walkthrough"),
     path("notifications/", notificationviews.NotificationView.as_view(), name="notifications"),
-    path('searchbar/', apiviews.searchbar, name='searchbar')
+    path('searchbar/', apiviews.searchbar, name='searchbar'),
+    path('searchbar/<str:search>/page-<int:page>', apiviews.searchbar_page, name='searchbarpages')
+
 ]
 
 
