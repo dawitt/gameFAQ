@@ -1,7 +1,10 @@
 {% extends "base.html" %} {% block title %} User Detail {% endblock title %} 
 {% block content %}
-<div>
+<d>
   <h2>{{user}}'s Profile</h2>
+{% if user.profile_img %}
+  <img width='25%'src="{{user.profile_img.url}}" /> 
+{% endif %}
   <p>ID: {{user.id}}</p>
   <p>Joined: {{user.date_joined}}</p>
   <p>Last Login: {{user.last_login}}</p>

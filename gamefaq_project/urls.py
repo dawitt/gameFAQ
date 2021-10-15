@@ -58,6 +58,7 @@ urlpatterns = [
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
 # ERROR Handlers
 handler404 = 'posts.views.custom_page_not_found_view'
 handler500 = 'posts.views.custom_error_view'
