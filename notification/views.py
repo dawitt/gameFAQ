@@ -1,6 +1,5 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
-from users.models import MyUser
-from posts.models import WalkthroughPost, WalkthroughComment, QuestionPost, AnswerPost
+from django.shortcuts import render, reverse
+
 from notification.models import Notification
 from django.views.generic import View
 

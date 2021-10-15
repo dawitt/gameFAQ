@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from users.models import MyUser
-from posts.models import QuestionPost, WalkthroughPost, WalkthroughComment
+from posts.models import QuestionPost, WalkthroughPost
 from django.views.generic import View
 # Create your views here.
 
@@ -14,4 +14,3 @@ class UserDetailView(View):
 def all_users(request):
     users = MyUser.objects.all()
     return render(request, 'all_users.html', {'users': users})
-

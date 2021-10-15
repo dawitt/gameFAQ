@@ -1,51 +1,69 @@
-{% extends "base.html" %} {% block title %} <br />
-{% endblock title %} {% block content %}
+{% extends "base.html" %} {% block title %} Console Games {% endblock title %}
+{% block content %}
 
 <h2>{{console}} Games: {{games_count}}</h2>
 
 <div class="row">
-{% for game in game_list %}
-<div class="col-lg-3 col-md-6">
-          <div class="card shadow-sm">
-            <div class="thumbnail">
-            <img width="100%"  height="225" src="{{game.game_img}}" />
-            <div class="card-body">
-                  <a href="/game-detail/{{game.game_id}}"><button type="button" class="btn btn-sm btn-outline-primary">{{game.game_name}}</button></a>
-              </div>
-            </div>
-          </div>
-<br />
+  {% for game in game_list %}
+  <div class="col-lg-3 col-md-6">
+    <div class="card shadow-sm">
+      <div class="thumbnail">
+        <img width="100%" height="225" src="{{game.game_img}}" />
+        <div class="card-body">
+          <a href="/game-detail/{{game.game_id}}"
+            ><button type="button" class="btn btn-sm btn-outline-primary">
+              {{game.game_name}}
+            </button></a
+          >
         </div>
-{% endfor %}
+      </div>
+    </div>
+    <br />
+  </div>
+  {% endfor %}
 </div>
 <nav aria-label="...">
   <ul class="pagination justify-content-center">
-  {% if prev_page < 1 %}
+    {% if prev_page < 1 %}
 
     <li class="page-item disabled">
-      <a class="page-link" href="/console-games/{{console_slug}}/page-{{prev_page}}">Previous</a>
+      <a
+        class="page-link"
+        href="/console-games/{{console_slug}}/page-{{prev_page}}"
+        >Previous</a
+      >
     </li>
     <li class="page-item active" aria-current="page">
       <a class="page-link" href="#">{{prev_page|add:1}}</a>
-    
     </li>
-    
+
     <li class="page-item">
-      <a class="page-link" href="/console-games/{{console_slug}}/page-{{next_page}}">Next</a>
+      <a
+        class="page-link"
+        href="/console-games/{{console_slug}}/page-{{next_page}}"
+        >Next</a
+      >
     </li>
-  {% else %}
-  <li class="page-item disable">
-      <a class="page-link" href="/console-games/{{console_slug}}/page-{{prev_page}}">Previous</a>
+    {% else %}
+    <li class="page-item disable">
+      <a
+        class="page-link"
+        href="/console-games/{{console_slug}}/page-{{prev_page}}"
+        >Previous</a
+      >
     </li>
     <li class="page-item active" aria-current="page">
       <a class="page-link" href="#">{{prev_page|add:1}}</a>
-    
     </li>
-    
+
     <li class="page-item">
-      <a class="page-link" href="/console-games/{{console_slug}}/page-{{next_page}}">Next</a>
+      <a
+        class="page-link"
+        href="/console-games/{{console_slug}}/page-{{next_page}}"
+        >Next</a
+      >
     </li>
-  {% endif %}
+    {% endif %}
   </ul>
 </nav>
 
