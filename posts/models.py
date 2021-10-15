@@ -1,7 +1,6 @@
 from django.db import models
 from users.models import MyUser
 from django.utils import timezone
-from PIL import Image
 # Create your models here.
 
 class QuestionPost(models.Model):

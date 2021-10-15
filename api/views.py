@@ -1,6 +1,5 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
-from posts.forms import AddAnswerForm
-from posts.models import WalkthroughPost, QuestionPost, AnswerPost
+from django.shortcuts import render, reverse
+from posts.models import WalkthroughPost, QuestionPost
 import requests
 import json
 # Create your views here.
@@ -22,7 +21,8 @@ def console_detail_view(request, id):
     console_desc = data['description'].replace('<p>', '').replace('</p>', '').replace('<br />', '').replace('&#39;', "'").replace('&quot;', '"')
     games_count = data['games_count']
     data = json.dumps(data, indent=2)
-    return render(request, 'console.html', {'data': data, 'console_name':console_name, 'console_img': console_img, 'console_desc': console_desc, 'games_count':games_count, 'console_slug':console_slug ,'id':id})
+    context =  {'data': data, 'console_name':console_name, 'console_img': console_img, 'console_desc': console_desc, 'games_count':games_count, 'console_slug':console_slug ,'id':id}
+    return render(request, 'console.html', context)
 
 
 def console_games_view(request, console, page):
@@ -65,12 +65,11 @@ def console_games_view(request, console, page):
             'game_img': game['background_image']
         }
         game_list.append(game_obj)
-    
     data = json.dumps(data, indent=2)
     next_page = int(page) + 1
     prev_page = int(page) - 1
-    return render(request, 'console_all_games.html', {'next_page': next_page, 'prev_page': prev_page, 'data': data, 'id':id, 'game_list':game_list, 'console':console_name, 'console_slug': console})
-    #'game_name':game_name, 'game_slug':game_slug, 'game_img':game_img
+    context =  {'next_page': next_page, 'prev_page': prev_page, 'data': data, 'id':id, 'game_list':game_list, 'console':console_name, 'console_slug': console}
+    return render(request, 'console_all_games.html', context)
 
 def game_detail(request, id):
     url = 'https://api.rawg.io/api/games/' + str(id)
@@ -96,14 +95,11 @@ def game_detail(request, id):
         print(platform['platform']['name'])
         platforms.append(platform['platform']['name'])
     platforms = ', '.join(platforms)
-    
     data = json.dumps(data, indent=2)
-
-  
     walkthroughs = WalkthroughPost.objects.filter(for_game=game_name)
     questions = QuestionPost.objects.filter(for_game=game_name)
-    
-    return render(request, 'game_detail.html', {'id': id, 'game_name': game_name, 'game_slug': game_slug, 'game_img': game_img, 'game_desc': game_desc, 'game_release': game_release, 'esrb_rating': esrb_rating, 'platforms': platforms, 'questions': questions, 'walkthroughs': walkthroughs})
+    context = {'id': id, 'game_name': game_name, 'game_slug': game_slug, 'game_img': game_img, 'game_desc': game_desc, 'game_release': game_release, 'esrb_rating': esrb_rating, 'platforms': platforms, 'questions': questions, 'walkthroughs': walkthroughs}
+    return render(request, 'game_detail.html', context)
 
 def searchbar(request):  
     search = request.GET.get('search')
@@ -115,7 +111,6 @@ def searchbar(request):
     payload={
         'key':'81ea352e06b54bb4b1218cb8d2b0e4eb',
         'search': search,
-        # 'page': page 
     }
     response = requests.get(url, headers=headers, params=payload)
     data = json.loads(response.text)
@@ -130,13 +125,12 @@ def searchbar(request):
             'game_img': game['background_image']
         }
         game_list.append(game_obj)
-
-    # print(data['next'])
     data = json.dumps(data['results'], indent=2)
     page = 1
     next_page = int(page) + 1
     prev_page = int(page) - 1
-    return render(request, 'search.html', {'search': search, 'count':count, 'game_list': game_list, 'data': data, 'search':search, 'prev_page': prev_page,'next_page':next_page,}) 
+    context =  {'search': search, 'count':count, 'game_list': game_list, 'data': data, 'search':search, 'prev_page': prev_page,'next_page':next_page,}
+    return render(request, 'search.html', context) 
 
 def searchbar_page(request, search, page):
     
@@ -164,7 +158,7 @@ def searchbar_page(request, search, page):
         game_list.append(game_obj)
     print(data['next'])
     data = json.dumps(data['results'], indent=2)
-    # print(data)
     next_page = int(page) + 1
     prev_page = int(page) - 1
-    return render(request, 'search.html', {'search':search,'count':count, 'game_list': game_list, 'data': data, 'search':search, 'prev_page': prev_page,'next_page':next_page,}) 
+    context = {'search':search,'count':count, 'game_list': game_list, 'data': data, 'search':search, 'prev_page': prev_page,'next_page':next_page,}
+    return render(request, 'search.html', context) 

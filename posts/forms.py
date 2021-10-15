@@ -1,6 +1,5 @@
 from django import forms
-from posts.models import WalkthroughPost, QuestionPost, WalkthroughComment
-from users.models import MyUser
+from posts.models import WalkthroughComment
 
 class AddWalkthroughComment(forms.ModelForm):
     post_img = forms.ImageField(required=False)

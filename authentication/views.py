@@ -9,7 +9,6 @@ from users.models import MyUser
 def signup_view(request):
     template_name = "signup.html"
     form = SignupForm()
-
     if request.method == "POST":
         form = SignupForm(request.POST, request.FILES)
         if form.is_valid():

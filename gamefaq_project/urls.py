@@ -54,12 +54,12 @@ urlpatterns = [
     path('searchbar/<str:search>/page-<int:page>', apiviews.searchbar_page, name='searchbarpages')
 
 ]
+# STATIC URL pattern to find files
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
-
-
+# ERROR Handlers
 handler404 = 'posts.views.custom_page_not_found_view'
 handler500 = 'posts.views.custom_error_view'
 handler403 = 'posts.views.custom_permission_denied_view'

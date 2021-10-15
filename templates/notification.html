@@ -1,10 +1,9 @@
-{% extends "base.html" %} {% block title %} <br />
+{% extends "base.html" %} {% block title %} Notifications
 {% endblock title %} {% block content %}
 
 <h2>All Notifications:</h2>
 
 {% for notification in notifications %} 
-<!-- {% if notification.mentioned == request.user %} -->
 {% if notification.answer_post %}
 <div>
   @{{notification.answer_post.answer_creator}} has answered your question:
@@ -20,5 +19,4 @@
     >
   </div>
 {% endif %}
-<!-- {% endif %} -->
- {% endfor %} {% endblock %}
+{% endfor %} {% endblock %}

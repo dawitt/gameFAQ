@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %} <br />
+{% extends "base.html" %} {% block title %} Game detail
 {% endblock title %} {% block content %}
 
 <div>
@@ -11,7 +11,6 @@
   <p>ESRB Rating: {{esrb_rating}}</p>
   {% endif %}
   <p>Platforms: {{platforms}}</p>
-  <!-- <p>{{data}}</p> -->
 {% if request.user.is_authenticated %}
   <div><a href="/add-walkthrough/{{id}}">Create your Walkthrough</a></div>
   <div>
