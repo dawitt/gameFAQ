@@ -24,9 +24,8 @@ from notification import views as notificationviews
 from django.conf import settings
 import os
 from django.conf.urls.static import static
-from django.conf.urls import (
-handler400, handler403, handler404, handler500
-)
+from django.conf.urls import handler400, handler403, handler404, handler500
+
 
 
 

@@ -145,6 +145,38 @@ def add_walkthrough(request, id):
     return render(request, 'generic_form.html', {'form':form})
 
 
+<<<<<<< Updated upstream
+=======
+#Got404/500 info from: 
+# https://stackoverflow.com/questions/17662928/django-creating-a-custom-500-404-error-page
+
+# def handler404(request, *args, **argv):
+#     response = render('404.html', {}, context_instance=RequestContext(request))
+#     response.status_code = 404
+#     return response
+
+
+# INCASE: handler404 will fail with message:"handler404() got an unexpected keyword argument 'exception'"
+# Use the next handler404 def instead.
+
+# def handler404(request, exception, template_name="404.html"):
+#     response = render_to_response(template_name)
+#     response.status_code = 404
+#     return response
+
+# def handler500(request, *args, **argv):
+#     response = render('500.html', {}, context_instance=RequestContext(request))
+#     response.status_code = 500
+#     return response
+
+
+# def favorite_game(request, id):
+#     user = request.user
+#     user.favorite
+#     return HttpResponseRedirect(reverse('game-detail', args=(id,)))
+
+
+>>>>>>> Stashed changes
 def custom_page_not_found_view(request, exception):
     return render(request, "404.html", {})
 
