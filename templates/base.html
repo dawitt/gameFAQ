@@ -145,10 +145,6 @@
                 <a class="nav-link" href="/user/{{request.user.id}}">
                   {% if user.is_authenticated %} {{request.user.username}}
                 </a>
-                <a>
-                  <img class="figure-img img-fluid rounded" src="{% static
-                  "images/avatar.png" %}">
-                </a>
                 <a class="nav-link" href="/notifications/"
                   >Notification 
                   <svg
